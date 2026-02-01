@@ -95,7 +95,7 @@ export const login = async (req, res) => {
       .status(200)
       .cookie("token", token, {
         maxAge: 1 * 24 * 60 * 600 * 1000,
-        httpsOnly: true,
+        httpOnly: true,
         sameSite: "strict",
       })
       .json({
@@ -123,16 +123,12 @@ export const updateProfile = async (req, res) => {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
     const file = req.file;
 
-    if (!fullname || !email || !phoneNumber || !bio || !skills) {
-      return res.status(400).json({
-        message: "Something is missing",
-        success: false,
-      });
+    // cloudinary will come here
+    let skillsArray;
+    if (skills) {
+      skillsArray = skills.split(",");
     }
 
-    // cloudinary will come here
-
-    const skillsArray = skills.split(",");
     const userId = req.id; //middleware authentication
     let user = await User.findById(userId);
 
@@ -144,15 +140,15 @@ export const updateProfile = async (req, res) => {
     }
 
     //updating data
+    if (fullname) user.fullname = fullname;
+    if (email) user.email = email;
+    if (phoneNumber) user.phoneNumber = phoneNumber;
+    if (bio) user.profile.bio = bio;
+    if (skills) user.profile.skills = skillsArray;
 
-    ((user.fullname = fullname),
-      (user.email = email),
-      (user.phoneNumber = phoneNumber),
-      (user.profile.bio = bio),
-      (user.profile.skills = skillsArray.SECRET_KEY),
-      //resume will come here later on
+    //resume will come here later on
 
-      await user.save());
+    await user.save();
 
     user = {
       _id: user._id,
