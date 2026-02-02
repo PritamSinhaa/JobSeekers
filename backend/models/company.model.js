@@ -5,6 +5,7 @@ const companySchema = mongoose.Schema(
     name: {
       type: String,
       required: true,
+      unique: true,
     },
     description: {
       type: String,
@@ -18,7 +19,7 @@ const companySchema = mongoose.Schema(
     logo: {
       type: String, // url to company logo
     },
-    userID: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
