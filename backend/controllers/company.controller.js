@@ -24,7 +24,7 @@ export const registerCompany = async (req, res) => {
       userId: req.id,
     });
 
-    return res.status(200).json({
+    return res.status(201).json({
       message: "Company registered successfully",
       company,
       success: true,
@@ -39,12 +39,18 @@ export const getCompany = async (req, res) => {
     const userId = req.id; // logged in user id
     const companies = await Company.find({ userId });
     if (!companies) {
-      res.status(404).json({
+      return res.status(404).json({
         message: "Companies not found.",
         success: false,
       });
     }
-  } catch (error) {}
+    return res.status(200).json({
+      companies,
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 //get company by id
@@ -52,7 +58,7 @@ export const getCompany = async (req, res) => {
 export const getCompanyById = async (req, res) => {
   try {
     const companyId = req.params.id;
-    const company = Company.findById(companyId);
+    const company = await Company.findById(companyId);
 
     if (!company) {
       return res.status(404).json({
@@ -74,6 +80,7 @@ export const updateCompany = async (req, res) => {
   try {
     const { name, description, website, location } = req.body;
     const file = req.file;
+
     //cloudinary will come here
 
     const updateData = { name, description, website, location };
