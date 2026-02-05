@@ -1,10 +1,14 @@
 import Navbar from "../ui/shared/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { RadioGroup } from "@/components/ui/radio-group";
 import { useState } from "react";
+import { USER_API_END_POINT } from "../../utils/constant";
+import { toast } from "sonner";
+import axios from "axios";
+
 
 function Login() {
   const [input, setInput] = useState({
@@ -13,13 +17,29 @@ function Login() {
     role: "",
   });
 
+  const navigate = useNavigate();
+
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(input);
+    try {
+      const res = await axios.post(`${USER_API_END_POINT}/login`, input, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      if (res.data.success) {
+        navigate("/");
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+       toast.error(error.response.data.message)
+    }
   };
 
   return (
@@ -55,7 +75,7 @@ function Login() {
             <RadioGroup className="flex gap-4 my-5 items-center">
               <div className="flex items-center gap-3">
                 <Input
-                 type="radio"
+                  type="radio"
                   name="role"
                   value="student"
                   checked={input.role == "student"}
@@ -66,7 +86,7 @@ function Login() {
               </div>
               <div className="flex items-center gap-3">
                 <Input
-                type="radio"
+                  type="radio"
                   name="role"
                   value="recruiter"
                   checked={input.role == "recruiter"}
