@@ -16,20 +16,12 @@ function Signup() {
         >
           <h1 className="font-bold text-xl mb-5">Sign Up</h1>
           <div className="my-4">
-            <Label className="my-2">Full Name</Label>
-            <Input type="text" value="" placeholder="Pritam Sinha" />
-          </div>
-          <div className="my-4">
             <Label className="my-2">Email</Label>
             <Input
               type="email"
               value=""
               placeholder="pritamsecond123@gmail.com"
             />
-          </div>
-          <div className="my-4">
-            <Label className="my-2">Phone Number</Label>
-            <Input type="email" value="" placeholder="7099440924" />
           </div>
           <div className="my-4">
             <Label className="my-2">Password</Label>
@@ -54,17 +46,9 @@ function Signup() {
                 <Label htmlFor="r2">Recruiter</Label>
               </div>
             </RadioGroup>
-            <div className="flex items-center gap-2">
-                <Label>Profile</Label>
-                <Input
-                accept="image/*"
-                type="file"
-                className="cursor-pointer"
-                />
-            </div>
           </div>
           <Button type="submit" className="w-full my-4 cursor-pointer" >Sign Up</Button>
-          <span>Already have an account? <Link to={"login"}className="text-[#6a38c2] cursor-pointer">Login</Link></span>
+          <span>Already have an account? <Link to={"/login"}className="text-[#6a38c2] cursor-pointer">Login</Link></span>
         </form>
       </div>
     </div>
