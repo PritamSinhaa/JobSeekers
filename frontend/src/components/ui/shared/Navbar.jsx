@@ -36,9 +36,9 @@ function Navbar() {
 
           {!user ? (
             <div>
-              <Link to={"login"} ><Button variant="outline" className="cursor-pointer">Login</Button></Link>
+              <Link to={"/login"} ><Button variant="outline" className="cursor-pointer">Login</Button></Link>
               &nbsp;
-              <Link to={"signup"}><Button className="bg-[#6a38c2] hover:bg-[#5b30a6] cursor-pointer">SignUp</Button></Link>
+              <Link to={"/signup"}><Button className="bg-[#6a38c2] hover:bg-[#5b30a6] cursor-pointer">SignUp</Button></Link>
             </div>
           ) : (
             <Popover>
