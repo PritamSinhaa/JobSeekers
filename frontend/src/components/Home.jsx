@@ -5,6 +5,7 @@ function Home() {
   return (
     <div>
       <Navbar/>
+      Home section is here
     </div>
   )
 }
