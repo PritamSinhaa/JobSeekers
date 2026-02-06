@@ -1,11 +1,18 @@
 import React from 'react'
 import Navbar from './ui/shared/Navbar'
+import HeroSection from './HeroSection'
+import CategoryCarousel from './CategoryCarousel'
+import LatestJobs from './LatestJobs'
+import Footer from './Footer'
 
 function Home() {
   return (
     <div>
       <Navbar/>
-      Home section is here
+      <HeroSection/>
+      <CategoryCarousel/>
+      <LatestJobs/>
+      <Footer/>
     </div>
   )
 }
