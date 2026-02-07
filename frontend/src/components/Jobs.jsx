@@ -10,9 +10,9 @@ function Jobs() {
   return (
     <div>
       <Navbar />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto mt-5">
         <div className="flex gap-5">
-          <div className="w-[20%]">
+          <div className="w-20%">
             <FilterCard />
           </div>
           {jobsArray.length <= 0 ? (
@@ -22,7 +22,7 @@ function Jobs() {
               <div className="grid grid-cols-3 gap-4">
                 {
                     jobsArray.map((index, item) => (
-                     <div>
+                     <div className="">
                         <Job />
                      </div>
                     ))
