@@ -15,9 +15,11 @@ import {
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { MdOutlineLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import store from "@/redux/store";
 
 function Navbar() {
-  let user = true;
+  const {user}= useSelector(store=>store.auth)
 
   return (
     <div className="bg-white">
@@ -71,7 +73,7 @@ function Navbar() {
                 <div className="flex flex-col text-gray-600">
                   <div className="flex w-fit items-center gap-2 cursor-pointer">
                     <IoPersonCircleSharp className="text-2xl" />
-                    <Button variant="link">View Profile</Button>
+                    <Button variant="link"><Link to="/profile">View Profile</Link></Button>
                   </div>
                   <div className="flex w-fit items-center gap-2 cursor-pointer">
                     <MdOutlineLogout className="text-2xl" />

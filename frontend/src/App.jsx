@@ -5,6 +5,7 @@ import Signup from './components/auth/Signup';
 import Home from './components/Home';
 import Jobs from './components/jobs';
 import Browse from './components/Browse';
+import Profile from './components/Profile';
 
 const appRouter = createBrowserRouter([
   {path:'/',element:<Home/>},
@@ -12,6 +13,7 @@ const appRouter = createBrowserRouter([
   {path:'/signup',element:<Signup/>},
   {path:'/jobs',element:<Jobs/>},
   {path:'/browse',element:<Browse/>},
+  {path:'/profile',element:<Profile/>},
 ]);
 
 function App() {
