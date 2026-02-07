@@ -17,7 +17,7 @@ import { MdOutlineLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  let user = false;
+  let user = true;
 
   return (
     <div className="bg-white">
@@ -32,7 +32,7 @@ function Navbar() {
             
             <Link to="/"><li>Home</li></Link>
             <Link to="/jobs"><li>Jobs</li></Link>
-            <Link to="/"><li>Browse</li></Link>
+            <Link to="/browse"><li>Browse</li></Link>
           </ul>
 
           {!user ? (
