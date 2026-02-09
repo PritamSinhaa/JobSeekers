@@ -29,6 +29,15 @@ function UpdateProfileDialog({ open, setOpen }) {
     setInput({...input,[e.target.name]:[e.target.value]})
   }
 
+  const fileChangeHandler = (e) => {
+    const file = e.target.files?.[0]
+    setInput({...input, file})
+  }
+  const submitHandler =(e) =>{
+    e.preventDefault;
+    console.log(input);
+  }
+
   return (
     <div>
       <Dialog open={open}>
@@ -41,7 +50,7 @@ function UpdateProfileDialog({ open, setOpen }) {
           <DialogHeader>
             <DialogTitle>Update Profile</DialogTitle>
           </DialogHeader>
-          <form action="">
+          <form onSubmit={submitHandler}>
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="name" className="text-right">
@@ -110,7 +119,7 @@ function UpdateProfileDialog({ open, setOpen }) {
                   name="file"
                   type="file"
                   value={input.file}
-                  
+                  onChange={fileChangeHandler}
                   accept="application/pdf"
                   className="col-span-3"
                 />
