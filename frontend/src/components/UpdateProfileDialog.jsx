@@ -25,6 +25,10 @@ function UpdateProfileDialog({ open, setOpen }) {
     file:user?.profile?.resume
   })
 
+  const changeEventHandler =(e)=> {
+    setInput({...input,[e.target.name]:[e.target.value]})
+  }
+
   return (
     <div>
       <Dialog open={open}>
@@ -46,7 +50,9 @@ function UpdateProfileDialog({ open, setOpen }) {
                 <Input 
                 id="name" 
                 name="name" 
+                type="text"
                 value={input.fullname}
+                onChange={changeEventHandler}
                 className="col-span-3" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
@@ -56,7 +62,9 @@ function UpdateProfileDialog({ open, setOpen }) {
                 <Input 
                 id="email"
                 name="email" 
+                type="email"
                 value={input.email}
+                onChange={changeEventHandler}
                 className="col-span-3" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
@@ -66,7 +74,9 @@ function UpdateProfileDialog({ open, setOpen }) {
                 <Input 
                 id="number" 
                 name="number" 
+                type="number"
                 value={input.phoneNumber}
+                onChange={changeEventHandler}
                 className="col-span-3" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
@@ -77,6 +87,7 @@ function UpdateProfileDialog({ open, setOpen }) {
                 id="bio" 
                 name="bio" 
                 value={input.bio}
+                onChange={changeEventHandler}
                 className="col-span-3" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
@@ -87,6 +98,7 @@ function UpdateProfileDialog({ open, setOpen }) {
                 id="skills" 
                 name="skills" 
                 value={input.skills}
+                onChange={changeEventHandler}
                 className="col-span-3" />
               </div>
               <div className="grid grid-cols-4 items-center gap-4">
@@ -98,6 +110,7 @@ function UpdateProfileDialog({ open, setOpen }) {
                   name="file"
                   type="file"
                   value={input.file}
+                  
                   accept="application/pdf"
                   className="col-span-3"
                 />
